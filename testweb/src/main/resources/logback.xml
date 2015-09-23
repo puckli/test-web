@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+
+	<property name="outPattern"
+		value="[%p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t][%c]%C:%L - %m %n" />
+	<!-- 文件历史数 -->
+	<property name="maxHistory" value="7" />
+	<!-- logback -->
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/dmall_kill_man.log</file>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/dmall_kill_man%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="LOG_OrderController_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/OrderController.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/OrderController%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="LOG_OrderPriceController_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/OrderPriceController.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/OrderPriceController%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 拣货任务分配  -->
+	<appender name="LOG_ALLOTTASK_CONTROLLER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/AllotTaskController.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/AllotTaskController%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 拣货任务分配dubbo  -->
+	<appender name="LOG_ALLOTTASK_DUBBO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/AllotTaskDubbo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/AllotTaskDubbo%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 拣货任务分配dubbo  -->
+	<appender name="LOG_PICK_INFO_DUBBO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/PickerInfoDubbo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/PickerInfoDubbo%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+		<!-- 拣货任务统计  -->
+	<appender name="LOG_PICKCOUNT_CONTROLLER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/PickCountController.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/PickCountController%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<appender name="LOG_REDISUTIL_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/redisutil.log</file>
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/redisutil%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+	<!-- 拣货任务分配DUBBOlog -->
+	<logger name="LOG_ALLOT_TASK_DUBBO" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_ALLOTTASK_DUBBO_FILE" />
+	</logger>
+	<!-- 拣货员信息DUBBOlog -->
+	<logger name="LOG_PICKER_INFO_DUBBO" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_PICK_INFO_DUBBO_FILE" />
+	</logger>
+	<!-- 拣货任务分配log -->
+	<logger name="LOG_ALLOT_TASK_CONTROLLER" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_ALLOTTASK_CONTROLLER_FILE" />
+	</logger>
+	<!-- 拣货任务统计log -->
+	<logger name="LOG_PICK_COUNT_CONTROLLER" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_PICKCOUNT_CONTROLLER_FILE" />
+	</logger>
+	<logger name="LOG_OrderController" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_OrderController_FILE" />
+	</logger>
+	
+	<logger name="LOG_OrderPriceController" level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_OrderPriceController_FILE" />
+	</logger>
+	
+	<logger name="com.dmall" level="${log.level}" additivity="false">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="FILE" />
+	</logger>
+	
+	<logger name="LOG_REDISUTIL" level="${log.level}" additivity="false">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="LOG_REDISUTIL_FILE" />
+	</logger>
+
+	<root level="${log.level}">
+		<if condition='"${devMode}".equals("true")'>
+			<then>
+				<appender-ref ref="CONSOLE" />
+			</then>
+		</if>
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
