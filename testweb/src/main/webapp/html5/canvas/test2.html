@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test1.html</title>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+div{display:inline-block;}
+</style>
+</head>
+
+<body>
+0
+	<div>
+		<canvas id="mycanvas" style="width:500px;height:500px;border:1px solid #000;"></canvas>
+	</div>
+1	
+	<div>
+		<canvas id="canvas1" style="width:500px;height:500px;border:1px solid #000;"></canvas>
+	</div>
+2	
+	<div>
+		<canvas id="canvas2" style="width:500px;height:500px;border:1px solid #000;"></canvas>
+	</div>
+
+<script>
+	var canvas = document.getElementById("mycanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.strokeStyle="FF0000";
+	ctx.lineWidth=2;
+	
+	ctx.arc(200,200,100,0,Math.PI*(1/2),false);
+	ctx.stroke();
+	
+	
+	var c1 = document.getElementById("canvas1");
+	var ct1 = c1.getContext("2d");
+	ct1.strokeStyle="FF0000";
+	ct1.lineWidth=2;
+	ct1.moveTo(10,10);
+	ct1.arcTo(210,60,10,210,30);
+	ct1.stroke();
+	ct1.beginPath();
+	ct1.strokeStyle("#000");
+	ct1.moveTo(10,6);
+	ct1.lineTo(214, 60);
+	ct1.lineTo(10, 214);
+	ct1.stroke();
+	
+	
+	
+	var c2 = document.getElementById("canvas2");
+	var ct2 = c2.getContext("2d");
+	ct2.strokeStyle="FF0000";
+	ct2.lineWidth=2;
+	ct2.moveTo(100,100);
+	ct2.quadraticCurveTo(125,225,225,166);
+	ct2.stroke();
+</script>
+
+</body>
+</html>

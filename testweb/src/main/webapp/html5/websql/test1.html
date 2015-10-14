@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test1.html</title>
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+
+<body>
+
+<div id="status" name="status">状态信息</div>
+<script type="text/javascript" >
+	var MyDb = openDatabase("myDatabase","1.0","我的测试database",8*1024*1024);
+	var msg;
+	MyDb.transaction(function(evt){
+		evt.executeSql('Create tanle IF NOT　EXISTS records(id unique,records)');
+		evt.executeSql('Insert into records (id, records) values(1, "abc")');
+		evt.executeSql('Insert into records (id, records) values(2, "hello")');
+		msg = "<p>create a创建了表【Records】，并插入两条记录</p>";
+		document.querySelector('#status').innerHTML = msg;
+	});
+	MyDb.transaction(function(evt){
+		evt.executeSql('Select * from records',[],function(evt,results){
+			var len = results.rows.length,i;
+			msg = "<p> 查询结果记录数：" + len + "</p>";
+			document.querySelector('#status').innerHTML += msg;
+			for(i = 0; i < len; i++){
+				alert("记录：" + results.rows.item(i).Record);
+			}
+		},null)
+	});
+</script>
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
