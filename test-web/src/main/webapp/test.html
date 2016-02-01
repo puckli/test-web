@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    This is my HTML page. <br>
+    
+    
+     <form action="/testweb/upload/img" method="post" enctype="multipart/form-data">
+    
+    <input id="fileToUpload" type="file" name="file" ><br>
+    <input type="text" name="str" ><br>
+    
+    <input type="submit" name="sub" value="submit">
+    
+    
+    </form>
+    <button id="cli" value="click..." name="click..." title="click...">click...</button>
+    
+    <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript">
+    $("#cli").click(function(){
+    	alert("clicked");
+    	
+    	
+    	ajaxFileUpload();
+    });
+    
+    function ajaxFileUpload() {  
+        $.ajaxFileUpload({  
+            url : "/testweb/upload/img",   //submit to UploadFileServlet  
+            secureuri : false,  
+            fileElementId : 'fileToUpload',  
+            dataType : 'text', //or json xml whatever you like~  
+            success : function(data, status) {  
+            	alert("success");
+                $("#result").append(data);  
+            },  
+            error : function(data, status, e) {  
+                $("#result").append(data);  
+            }  
+        });  
+        return false;  
+    }  
+    </script>
+  </body>
+</html>

@@ -25,14 +25,6 @@
             </list>
         </property>
     </bean>
-<!--     <import resource="spring/spring-config-dao.xml"/>
-    <import resource="spring/spring-config-redis.xml"/>
-    <import resource="spring/spring-config-domain.xml"/>
-	<import resource="spring/spring-config-service.xml"/>
-	<import resource="spring/spring-config-hessian.xml"/>
-	<import resource="spring/spring-config-servlet.xml"/>
-    <import resource="spring/spring-config-soa.xml"/>
-    <import resource="spring/spring-config-dubbo.xml"/> 
-    <import resource="spring/spring-config-dubbo-client.xml"/>  
-    <import resource="spring/spring-config-mq.xml"/> -->
+    
+<!--     <import resource="spring/spring-config-servlet.xml"/> -->
 </beans>
