@@ -9,6 +9,15 @@
 	<description />
 
 	<build>
+		<filters>
+			<filter>${pfile}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<pluginManagement>
 			<plugins>
 				<!-- Method 1 mojo 部署web应用到Tomcat下的插件,并设置Tomcat启动端口与访问路径 -->
@@ -119,7 +128,46 @@
 
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.2</version>
+		</dependency>
 		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.9</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+			<version>1.9.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<!-- spring start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -136,7 +184,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-	<!-- 	<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-asm</artifactId>
 			<version>${spring.version}</version>
@@ -154,6 +202,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>

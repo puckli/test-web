@@ -1,11 +1,15 @@
+# eclipse
 /target/
-#
 target/*
-#
 target/*/*.*
-#
 *.class
 /.settings/
+
+# Intellij idea
+/.idea/
+.idea/*
+*.iml
+
 
 
 
