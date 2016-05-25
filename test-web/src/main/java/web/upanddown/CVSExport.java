@@ -80,7 +80,7 @@ public class CVSExport {
 	}
 	
 	private List<CVSDomain> testData(){
-		List<CVSDomain> list = new ArrayList<>(2);
+		List<CVSDomain> list = new ArrayList<CVSDomain>(2);
 		CVSDomain a = new CVSDomain();
 		a.setName("hello").setDesc("名字");
 		CVSDomain b = new CVSDomain();
