@@ -22,7 +22,6 @@ body {
 	background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50px 50px, 50px
 		50px, 50px 50px, 50px 50px, 50px 50px;
 		
-		
 	background-image: -moz-radial-gradient(circle closest-side at 60% 43%, rgb(187, 0, 51)
 		26%, rgba(187, 0, 51, 0) 27% ),
 		-moz-radial-gradient(circle closest-side at 40% 43%, rgb(187, 0, 51) 26%,
@@ -66,10 +65,6 @@ body {
 		-webkit-radial-gradient(circle closest-side at 50% 35%, rgb(221, 51, 85) 30%,
 		rgba(221, 51, 85, 0) 31% );
 		
-		
-		
-		
-		
 	background-image: radial-gradient(circle closest-side at 60% 43%, rgb(187, 0, 51)
 		26%, rgba(187, 0, 51, 0) 27% ),
 		radial-gradient(circle closest-side at 40% 43%, rgb(187, 0, 51) 26%,
@@ -100,7 +95,7 @@ body {
 		padding-box;
 	background-clip: border-box, border-box, border-box, border-box,
 		border-box, border-box, border-box, border-box, border-box, border-box;
-	background-color: rgb(187, 0, 51);
+	background-color: rgb(187, 5, 51);
 }
 
 section {
@@ -108,7 +103,7 @@ section {
 	margin: 30px auto;
 }
 
-section div {
+section div,.words2 {
 	text-shadow:2px 2px 1px #000;
 	font-size: 26px;
 	text-align: center;
@@ -121,12 +116,12 @@ section div {
 	padding-left:26%;
 }
 .ilu{font-weight:bold;font-size:2em;}
+.words{margin-top:100px;height:60px}
+.words2{position:absolute; right:20px; bottom:20px;margin-bottom:20px}
 </style>
 </head>
 
 <body>
-
-
 
 	<section>
 		<br>
@@ -135,7 +130,10 @@ section div {
 			<div></div>
 			<span class="ilu">I ♥ U</span>
 		</div>
+		<div id="word" class="words"></div>
+		
 	</section>
+	<div id="word2" class="words2"></div>
 	
 	<div id="demo" style="width:520; height:500px;"><canvas id="c" height="500" width="500"></canvas></div>
 	
@@ -195,6 +193,16 @@ section div {
 
     function stop_draw(obj){
         clearInterval(obj);
+    }
+    window.onload=function(){
+    	setInterval(showmy, 2000);
+    	setInterval(yh, 3500);
+    }
+    function showmy(){
+    	document.getElementById("word").innerHTML="\u660E\u5929\u4E0D\u8FC7\u8282, \u597D\u4E48\u597D\u4E48 ^^ ~";
+    }
+    function yh(){
+    	document.getElementById("word2").innerHTML="\u6765\u7EA6\u4F1A\u5427 ♥";
     }
 
 </script>
