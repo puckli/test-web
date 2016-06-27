@@ -1,14 +1,45 @@
-# eclipse
-/target/
-target/*
-target/*/*.*
-*.class
-/.settings/
 
-# Intellij idea
-/.idea/
-.idea/*
+
+*.class
+
+!.gitignore
+
+# maven ignore
+
+target/
+
+
+
+# eclipse ignore
+
+.settings/
+
+.project
+
+.classpath
+
+
+
+# idea ignore
+
+.idea/
+
+*.ipr
+
 *.iml
+
+*.iws
+
+
+#svn
+.svn/
+
+
+# system ignore
+
+.DS_Store
+
+Thumbs.db
 
 
 
