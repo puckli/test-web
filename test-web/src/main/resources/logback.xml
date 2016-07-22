@@ -5,8 +5,6 @@
 		value="[%p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t][%c]%C:%L - %m %n" />
 	<!-- 文件历史数 -->
 	<property name="maxHistory" value="7" />
-	<!-- logback -->
-
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>${outPattern}</pattern>
