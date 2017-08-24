@@ -10,7 +10,7 @@
 
 	<build>
 		<filters>
-			<filter>${pfile}</filter>
+			<filter>src/main/resources/${env}.properties</filter>
 		</filters>
 		<resources>
 			<resource>
@@ -27,7 +27,7 @@
 					<version>1.1</version>
 					<configuration>
 						<port>9090</port>
-						<path>/testweb</path>
+						<path>/</path>
 						<uriEncoding>utf-8</uriEncoding>
 					</configuration>
 				</plugin>
@@ -107,7 +107,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<pfile>development.properties</pfile>
+				<env>development</env>
 			</properties>
 		</profile>
 		<!-- 测试环境 -->

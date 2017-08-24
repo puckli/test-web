@@ -12,10 +12,10 @@
 	</appender>
 
 	
-	<appender name="LOG_testc_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${dynamic.log.path}/OrderController.log</file>
+	<appender name="LOG_test_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/test.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${dynamic.log.path}/LOG_testc_FILE%d{yyyy-MM-dd}.log.gz
+			<fileNamePattern>${dynamic.log.path}/test%d{yyyy-MM-dd}.log.gz
 			</fileNamePattern>
 			<maxHistory>${maxHistory}</maxHistory>
 		</rollingPolicy>
@@ -24,13 +24,13 @@
 		</encoder>
 	</appender>
 	
-	<logger name="LOG_testc" level="${log.level}">
+	<logger name="LOG_test" level="${log.level}">
 		<if condition='"${devMode}".equals("true")'>
 			<then>
 				<appender-ref ref="CONSOLE" />
 			</then>
 		</if>
-		<appender-ref ref="LOG_testc_FILE" />
+		<appender-ref ref="LOG_test_FILE" />
 	</logger>
 	
 	
