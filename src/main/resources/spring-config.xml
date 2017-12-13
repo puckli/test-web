@@ -27,4 +27,5 @@
     </bean>
     
 	<import resource="spring/spring-config-servlet.xml"/>
+	<import resource="spring/spring-config-mvc.xml"/>
 </beans>

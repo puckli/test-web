@@ -11,7 +11,7 @@
 	default-autowire="byName">
 
 	<!-- mvc controller -->
-	<context:component-scan base-package="web.springmvc.controller" />
+	<context:component-scan base-package="web.springmvc.controller,web.freemarker" />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<context:annotation-config />
 	
@@ -23,13 +23,14 @@
  	<mvc:default-servlet-handler />
 	
 	<!-- ViewResolver -->
-	<bean id="jspViewResolver"
+<!--	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<!-- why recommend jsp put in WEB-INF dir, becose is safe for user visit, user can't visit page by jsp url whith in WEB-INF -->
+		&lt;!&ndash; why recommend jsp put in WEB-INF dir, becose is safe for user visit, user can't visit page by jsp url whith in WEB-INF &ndash;&gt;
+		&lt;!&ndash;<property name="prefix" value="/WEB-INF/jsp/"/>&ndash;&gt;
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
+	</bean>-->
 	
 	<!-- <bean id="excelViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
 		<property name="order" value="1" />
