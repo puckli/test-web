@@ -2,6 +2,8 @@ package web.domain;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Builder
@@ -12,5 +14,7 @@ public class TestDomain extends BaseDomain{
 
 	private String name;
 	private String desc;
+
+	private BigDecimal bigDecimal;
 
 }

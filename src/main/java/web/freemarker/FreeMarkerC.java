@@ -32,7 +32,7 @@ public class FreeMarkerC {
 
         view.addObject("lastUpdated", new Date());
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("hello", "puck");
         map.put("az", "good");
         view.addObject("map", map);
