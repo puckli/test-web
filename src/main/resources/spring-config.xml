@@ -15,7 +15,6 @@
          <property name="locations">
             <list>
               <value>classpath:conf/important.properties</value>
-              <value>classpath:${env}.properties</value>
             </list>
         </property>
     </bean>
