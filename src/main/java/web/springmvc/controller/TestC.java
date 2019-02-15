@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import web.aop.NeedExceptionHandle;
+import web.util.BusinessException;
 import web.util.LogHelper;
 
 @Controller
@@ -19,8 +21,11 @@ public class TestC
 	
 	@RequestMapping
 	@ResponseBody
+	@NeedExceptionHandle
 	public String test(Model view){
 		logger.info("test()in..");
+		System.out.println(".................");
+		int a = 3/0;
 		return job;
 	}
 }
