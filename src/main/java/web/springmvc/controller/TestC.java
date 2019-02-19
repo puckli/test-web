@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import web.aop.NeedExceptionHandle;
+import web.aop.ExceptionPointCut;
 import web.util.BusinessException;
 import web.util.LogHelper;
 
@@ -21,11 +21,16 @@ public class TestC
 	
 	@RequestMapping
 	@ResponseBody
-	@NeedExceptionHandle
+	@ExceptionPointCut
 	public String test(Model view){
 		logger.info("test()in..");
 		System.out.println(".................");
-		int a = 3/0;
+		try {
+			int a = 3/0;
+		} catch (Exception e) {
+//			e.printStackTrace();
+			throw new BusinessException("buss");
+		}
 		return job;
 	}
 }
