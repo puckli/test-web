@@ -33,21 +33,26 @@ public class MyExceptionHandler {
 		return JSONObject.toJSONString(HttpResult.fail());
 	}
 
+	/**
+	 * 与@ResponseBody共同使用时，返回自定义对象可能报错，需要对应jackson版本才行
+	 * @param joinPoint
+	 * @return
+	 */
 	@Around("myPointCut()")
-	public Object aroundCut(ProceedingJoinPoint joinPoint){
+	public HttpResult aroundCut(ProceedingJoinPoint joinPoint){
 		System.out.println("Aspect in aroundCut");
 		Object obj = null;
 		try {
 			obj = joinPoint.proceed();
 		} catch (BusinessException | IllegalArgumentException e) {
 			System.out.println("Aspect aroundCut, BusinessException | IllegalArgumentException =" + e.getMessage());
-			return JSONObject.toJSONString(HttpResult.fail(e.getMessage()));
+			return HttpResult.fail(e.getMessage());
 		} catch (Throwable throwable) {
 			System.out.println("Aspect aroundCut e=" + throwable);
 			// 发生异常后返回特定内容
-			return JSONObject.toJSONString(HttpResult.fail("操作异常"));
+			return HttpResult.fail("操作异常");
 		}
 		System.out.println("Aspect end aroundCut");
-		return obj;
+		return (HttpResult) obj;
 	}
 }

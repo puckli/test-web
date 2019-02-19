@@ -1,5 +1,9 @@
 package web.base;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * base controller
@@ -7,6 +11,9 @@ package web.base;
  *
  */
 public class BaseC {
-	public static void main(String[] args) {
+
+	protected HttpServletRequest getRequest() {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		return request;
 	}
 }
