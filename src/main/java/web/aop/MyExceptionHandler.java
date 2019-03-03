@@ -12,7 +12,7 @@ import web.util.BusinessException;
 
 /**
  * @author lwz
- * @Description aop test
+ * @Description aop test，need @EnableAspectJAutoProxy
  * ("execution(* web..*(..))") // 切点表达式
  * @Date: 15:47 2019-02-15
  */

@@ -7,7 +7,7 @@
 	default-autowire="byName">
 
 	<!-- 启用spring mvc 注解 -->
-	<mvc:annotation-driven />
+	<!--<mvc:annotation-driven />-->
 
 	<!-- 配置freeMarker的模板路径 -->
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -15,11 +15,11 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	<!-- freemarker视图解析器 -->
-	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="suffix" value=".ftl" />
-		<property name="contentType" value="text/html;charset=UTF-8" />
-		<!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath -->
-		<property name="requestContextAttribute" value="rc" />
-	</bean>
+	<!--<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+		<!--<property name="suffix" value=".ftl" />-->
+		<!--<property name="contentType" value="text/html;charset=UTF-8" />-->
+		<!--&lt;!&ndash; 此变量值为pageContext.request, 页面使用方法：rc.contextPath &ndash;&gt;-->
+		<!--<property name="requestContextAttribute" value="rc" />-->
+	<!--</bean>-->
 
 </beans>

@@ -19,11 +19,20 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter{
 
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//        resolver.setPrefix("/");
+//        resolver.setSuffix(".jsp");
+//        resolver.setExposeContextBeansAsAttributes(true);
+//        return resolver;
+//    }
+
     @Bean
     public ViewResolver viewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/");
-        resolver.setSuffix(".jsp");
+        resolver.setPrefix("/WEB-INF/ftl");
+        resolver.setSuffix(".ftl");
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
