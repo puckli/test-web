@@ -21,16 +21,7 @@
 	<!-- static resources -->
 	<mvc:resources location="/js/" mapping="/js/**" cache-period="864000" /><!-- 24 * 3600 * 10 -->
  	<mvc:default-servlet-handler />
-	
-	<!-- ViewResolver -->
-<!--	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		&lt;!&ndash; why recommend jsp put in WEB-INF dir, becose is safe for user visit, user can't visit page by jsp url whith in WEB-INF &ndash;&gt;
-		&lt;!&ndash;<property name="prefix" value="/WEB-INF/jsp/"/>&ndash;&gt;
-		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />
-	</bean>-->
+
 	
 	<!-- <bean id="excelViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
 		<property name="order" value="1" />
@@ -58,21 +49,4 @@
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 
-	<!--
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/**.html" />
-			<mvc:exclude-mapping path="/assets/**" />
-			<mvc:exclude-mapping path="/js/**" />
-			<mvc:exclude-mapping path="/soa/**" />
-			<mvc:exclude-mapping path="/error/**" />
-			<mvc:exclude-mapping path="/favicon.ico" />
-			<mvc:exclude-mapping path="/index.jsp" />
-			<bean class="com.wm.nb.web.interceptor.LoginInterceptor">
-				<property name="erpDomain" value="http://${erp.domain.name}" />
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
- -->
 </beans>
