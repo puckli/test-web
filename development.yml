@@ -11,6 +11,14 @@ jdbc.initialSize=1
 jdbc.maxWait=60000
 jdbc.minIdle=10
 
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jjdbc:MySql://localhost:3306/test?characterEncoding=UTF-8&amp;autoReconnect=true&amp;failOverReadOnly=false
+    username: root
+    password: 9999
+
 ##redis
 redis.ip=192.168.8.241
 #redis.ip=192.168.8.64

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 /**
  * @author puck
@@ -35,9 +36,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
      */
     @Bean
     public ViewResolver viewResolver(){
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("classpath:/WEB-INF/ftl");
+        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setPrefix("/WEB-INF/ftl/");
         resolver.setSuffix(".ftl");
+        resolver.setCache(true);
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
@@ -45,7 +47,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public FreeMarkerConfigurer freeMarkerConfigurer(){
         FreeMarkerConfigurer fkconf = new FreeMarkerConfigurer();
-        fkconf.setTemplateLoaderPath("classpath:/WEB-INF/ftl/");
+        fkconf.setTemplateLoaderPath("/WEB-INF/ftl/");
         fkconf.setDefaultEncoding("UTF-8");
         return fkconf;
     }

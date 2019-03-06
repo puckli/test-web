@@ -14,9 +14,8 @@ import java.util.*;
 public class FreeMarkerC {
 
     @RequestMapping("/fk")
-    public ModelAndView goFreeMarker(ModelAndView mv, HttpServletRequest request){
-        mv.setViewName("welcome");
-        ModelAndView view = new ModelAndView("welcome!");
+    public String goFreeMarker(ModelAndView view, HttpServletRequest request){
+//        ModelAndView view = new ModelAndView("welcome!");
         view.addObject("name", "My first mvc Freemarker !");
         view.setViewName("testFk");
 
@@ -37,6 +36,6 @@ public class FreeMarkerC {
         map.put("az", "good");
         view.addObject("map", map);
 
-        return view;
+        return "testFk";
     }
 }

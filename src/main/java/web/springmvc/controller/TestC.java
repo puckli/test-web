@@ -25,7 +25,7 @@ public class TestC extends BaseC
 	@RequestMapping
 	@ResponseBody
 	@ExceptionPointCut
-	public String test(Model view, String exDesc, String name){
+	public HttpResult test(Model view, String exDesc, String name){
 		exDesc = "测试异常！";
 		logger.info("test()in..");
 		System.out.println(".................");
@@ -35,7 +35,7 @@ public class TestC extends BaseC
 //			e.printStackTrace();
 			throw new BusinessException("buss");
 		}
-		return job;
+		return result;
 	}
 
 	@RequestMapping("a")

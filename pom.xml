@@ -24,21 +24,21 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<env>development</env>
+				<env>development.yml</env>
 			</properties>
 		</profile>
 		<!-- 测试环境 -->
 		<profile>
 			<id>test</id>
 			<properties>
-				<pfile>test.properties</pfile>
+				<pfile>test.yml</pfile>
 			</properties>
 		</profile>
 		<!-- 生产环境 -->
 		<profile>
 			<id>online</id>
 			<properties>
-				<pfile>online.properties</pfile>
+				<pfile>online.yml</pfile>
 			</properties>
 		</profile>
 	</profiles>
@@ -105,6 +105,8 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+
+
 		<!-- spring start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -212,7 +214,7 @@
 		</dependency>
 
 		<!-- Mybatis -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.2.1</version>
@@ -221,6 +223,11 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.0</version>
+		</dependency>-->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 
 		<!-- mysql connector -->
@@ -419,7 +426,7 @@
 
 	<build>
 		<filters>
-			<filter>src/main/resources/${env}.properties</filter>
+			<filter>src/main/resources/${env}</filter>
 		</filters>
 		<resources>
 			<resource>
