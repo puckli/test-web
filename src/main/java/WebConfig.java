@@ -1,3 +1,4 @@
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "web")
+@MapperScan("web.dao.mapper")
 @EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter{
 
