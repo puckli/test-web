@@ -6,14 +6,12 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>test-web</name>
-	<description />
-
-
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
+		<env>${pfile}</env>
 	</properties>
 
 	<profiles>
@@ -24,25 +22,79 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<env>development.yml</env>
+				<pfile>development.properties</pfile>
 			</properties>
 		</profile>
 		<!-- 测试环境 -->
 		<profile>
 			<id>test</id>
 			<properties>
-				<pfile>test.yml</pfile>
+				<pfile>test.properties</pfile>
 			</properties>
 		</profile>
 		<!-- 生产环境 -->
 		<profile>
 			<id>online</id>
 			<properties>
-				<pfile>online.yml</pfile>
+				<pfile>online.properties</pfile>
 			</properties>
 		</profile>
 	</profiles>
+	<build>
+		<filters>
+			<filter>${pfile}</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<!-- Method 1 mojo 部署web应用到Tomcat下的插件,并设置Tomcat启动端口与访问路径 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<version>1.1</version>
+					<configuration>
+						<port>9090</port>
+						<path>/</path>
+						<uriEncoding>utf-8</uriEncoding>
+					</configuration>
+				</plugin>
 
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<encoding>utf-8</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- 配置构建时忽略测试用例 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<skipTests>true</skipTests>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 	<dependencies>
 		<dependency>
@@ -214,16 +266,16 @@
 		</dependency>
 
 		<!-- Mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.4.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>1.3.2</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.mybatis</groupId>-->
+			<!--<artifactId>mybatis</artifactId>-->
+			<!--<version>3.4.6</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.mybatis</groupId>-->
+			<!--<artifactId>mybatis-spring</artifactId>-->
+			<!--<version>1.3.2</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus</artifactId>
@@ -428,61 +480,5 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<filters>
-			<filter>src/main/resources/${env}</filter>
-		</filters>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<pluginManagement>
-			<plugins>
-				<!-- Method 1 mojo 部署web应用到Tomcat下的插件,并设置Tomcat启动端口与访问路径 -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tomcat-maven-plugin</artifactId>
-					<version>1.1</version>
-					<configuration>
-						<port>9090</port>
-						<path>/</path>
-						<uriEncoding>utf-8</uriEncoding>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
-					<configuration>
-						<encoding>utf-8</encoding>
-					</configuration>
-				</plugin>
-
-				<!-- 配置构建时忽略测试用例 -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<skipTests>true</skipTests>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-						<encoding>UTF-8</encoding>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
 
 </project>

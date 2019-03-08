@@ -3,6 +3,7 @@ package web.dao.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import web.domain.User;
 
+
 /**
  * @author lwz
  * @Description
@@ -10,4 +11,5 @@ import web.domain.User;
  */
 
 public interface UserMapper extends BaseMapper<User> {
+
 }

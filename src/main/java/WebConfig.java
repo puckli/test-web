@@ -1,8 +1,5 @@
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -19,8 +16,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "web")
-@MapperScan("web.dao.mapper")
-@EnableAspectJAutoProxy
+//@MapperScan("web.dao.mapper")
+//@EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 //    @Bean
@@ -36,26 +33,26 @@ public class WebConfig extends WebMvcConfigurerAdapter{
      * <!-- 配置freeMarker的模板路径 -->
      * @return
      */
-    @Bean
-    public ViewResolver viewResolver(){
-        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-        resolver.setPrefix("/WEB-INF/ftl/");
-        resolver.setSuffix(".ftl");
-        resolver.setCache(true);
-        resolver.setExposeContextBeansAsAttributes(true);
-        return resolver;
-    }
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+//        resolver.setPrefix("/WEB-INF/ftl/");
+//        resolver.setSuffix(".ftl");
+//        resolver.setCache(true);
+//        resolver.setExposeContextBeansAsAttributes(true);
+//        return resolver;
+//    }
 
-    @Bean
-    public FreeMarkerConfigurer freeMarkerConfigurer(){
-        FreeMarkerConfigurer fkconf = new FreeMarkerConfigurer();
-        fkconf.setTemplateLoaderPath("/WEB-INF/ftl/");
-        fkconf.setDefaultEncoding("UTF-8");
-        return fkconf;
-    }
+//    @Bean
+//    public FreeMarkerConfigurer freeMarkerConfigurer(){
+//        FreeMarkerConfigurer fkconf = new FreeMarkerConfigurer();
+//        fkconf.setTemplateLoaderPath("/WEB-INF/ftl/");
+//        fkconf.setDefaultEncoding("UTF-8");
+//        return fkconf;
+//    }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+//    @Override
+//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        configurer.enable();
+//    }
 }

@@ -11,7 +11,6 @@ public class BaseDomain implements Serializable{
 
 	private Long id;
 	private Date created;
-	private Date updated;
 	private Date modified;
 	private Integer yn;
 

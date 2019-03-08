@@ -35,7 +35,7 @@ public class TestC extends BaseC
 		logger.info("test()in..");
 		System.out.println(".................");
 
-		User user = userMapper.selectById(1);
+		User user = userMapper.selectById(3);
 		result.setData(user);
 		try {
 			int a = 3/0;
@@ -46,7 +46,7 @@ public class TestC extends BaseC
 		return result;
 	}
 
-	@RequestMapping("a")
+	@RequestMapping("/a")
 	@ResponseBody
 	@ExceptionPointCut
 	public HttpResult testh(String exDesc){
@@ -57,6 +57,12 @@ public class TestC extends BaseC
 		} catch (Exception e) {
 			throw new BusinessException("buss testh");
 		}
+		return result;
+	}
+
+	@RequestMapping("/b")
+	@ResponseBody
+	public HttpResult test(){
 		return result;
 	}
 }

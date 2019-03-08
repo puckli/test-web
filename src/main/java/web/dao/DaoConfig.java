@@ -1,6 +1,7 @@
 package web.dao;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,12 @@ public class DaoConfig {
 
 //	@Autowired
 //	private DataSourceProperties dataSourceProperties;
+
+//	public MybatisSqlSessionFactoryBean sessionFactory(){
+//		MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
+//		sessionFactory.setDataSource(dataSource);
+//		return sessionFactory;
+//	}
 
 
 //	@Bean(name = "dataSource", initMethod = "init")

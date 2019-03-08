@@ -6,7 +6,7 @@
 </head>
 <body>
 <#-- FreeMarker的插值有如下两种类型:1,通用插值${expr};2,数字格式化插值:#{expr}或#{expr;format}  -->
-Hello ${name}
+Hello ${name!}
 <br><br>
     #{nums} ..
     #{nums2} ..

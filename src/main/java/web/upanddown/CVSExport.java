@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,9 +27,6 @@ public class CVSExport {
 	
 	private static final String CSV_HEADER = "name,desc";
 	private static final String CSV_TITLE = "XXXX Report"; 
-	
-	@Value("${domain.name}")
-	private String domainName;
 	
 	@RequestMapping(value = {"/page"})
 	public String page(){
