@@ -21,8 +21,8 @@ import web.util.LogHelper;
 public class TestC extends BaseC
 {
 	private static final Logger logger = LogHelper.Test;
-	@Value(value = "${domain.name}")
-	private String job;
+//	@Value(value = "${domain.name}")
+//	private String job;
 	private HttpResult result = HttpResult.fail("操作异常");
 	@Autowired
 	UserMapper userMapper;

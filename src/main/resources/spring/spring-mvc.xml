@@ -10,13 +10,13 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd"
 	default-autowire="byName">
 
-	<mvc:default-servlet-handler />
-	<!-- mvc controller -->
-	<context:component-scan base-package="web" />
-	<aop:aspectj-autoproxy proxy-target-class="true" />
-
 	<!-- JSR-303 support will be detected on classpath and enabled automatically -->
 	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<!-- mvc controller -->
+	<context:component-scan base-package="web.springmvc" />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
 	<!-- static resources -->
 	<mvc:resources location="/js/" mapping="/js/**" cache-period="864000" /><!-- 24 * 3600 * 10 -->
 

@@ -1,4 +1,4 @@
-package web.freemarker;
+package web.springmvc.freemarker;
 
 import org.springframework.stereotype.Controller;
         import org.springframework.web.bind.annotation.RequestMapping;
