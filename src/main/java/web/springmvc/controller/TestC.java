@@ -40,8 +40,7 @@ public class TestC extends BaseC
 		try {
 			int a = 3/0;
 		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw new BusinessException("buss");
+			throw new BusinessException("exxx test:" + e.getMessage());
 		}
 		return result;
 	}

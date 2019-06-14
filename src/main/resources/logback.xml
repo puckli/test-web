@@ -22,14 +22,14 @@
 		<encoder>
 			<pattern>${outPattern}</pattern>
 		</encoder>
+		<!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+			<!--<level>ERROR</level>-->
+			<!--<onMatch>ACCEPT</onMatch>-->
+			<!--<onMismatch>DENY</onMismatch>-->
+		<!--</filter>-->
 	</appender>
 	
 	<logger name="LOG_test" level="${log.level}">
-		<if condition='"${devMode}".equals("true")'>
-			<then>
-				<appender-ref ref="CONSOLE" />
-			</then>
-		</if>
 		<appender-ref ref="LOG_test_FILE" />
 	</logger>
 	
@@ -41,8 +41,38 @@
 			</then>
 		</if>
 		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="FILE" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="LOG_test" />
 	</root>
 
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<appender name="BASEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logPath}/base_error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logPath}/base_error.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!-- logger -->
+	<logger name="org.apache.zookeeper" level="warn" additivity="false">
+		<appender-ref ref="BASEERROR"/>
+	</logger>
+	<logger name="com.alibaba.dubbo" level="info" additivity="false">
+		<appender-ref ref="BASEERROR"/>
+	</logger>
+	<logger name="org.springframework" level="warn" additivity="false">
+		<appender-ref ref="BASEERROR"/>
+	</logger>
+	<logger name="com.dmall.monitor.sdk" level="info" additivity="false">
+		<appender-ref ref="BASEERROR"/>
+	</logger>
 </configuration>
