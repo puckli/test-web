@@ -128,7 +128,7 @@
         setInterval(appendWord, 200);
     }
 
-    var word = "姚,之,妖,妖,,,灼,灼,其,华";
+    var word = "en~";
     //  I ♥ U
     var cnts = false;
     function appendWord(){

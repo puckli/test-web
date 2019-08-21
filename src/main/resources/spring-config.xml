@@ -22,8 +22,10 @@
         </property>
     </bean>
 
+
     <mvc:annotation-driven/>
     <context:component-scan base-package="web" />
 
-	<import resource="spring/spring-mybatis.xml"/>
+    <import resource="spring/spring-mybatis.xml"/>
+
 </beans>

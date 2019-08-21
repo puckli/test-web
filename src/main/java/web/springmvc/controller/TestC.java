@@ -15,6 +15,7 @@ import web.domain.HttpResult;
 import web.domain.User;
 import web.util.BusinessException;
 import web.util.LogHelper;
+import web.util.SpringBeanContextUtil;
 
 @Controller
 @RequestMapping(value = "/test")
@@ -34,8 +35,9 @@ public class TestC extends BaseC
 		exDesc = "测试异常！";
 		logger.info("test()in..");
 		System.out.println(".................");
+		UserMapper mapper = SpringBeanContextUtil.get("userMapper");
 
-		User user = userMapper.selectById(3);
+		User user = mapper.selectById(3);
 		result.setData(user);
 		try {
 			int a = 3/0;
