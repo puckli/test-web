@@ -39,8 +39,8 @@ public class SimpleTest {
 
 	@Resource
 	UserMapper userMapper;
-//	@Resource
-//	SpringContextService springContextService;
+	@Resource
+	SpringContextService springContextService;
 	@Autowired
 	Environment evn;
 
@@ -51,11 +51,11 @@ public class SimpleTest {
 		User entity = userMapper.selectOne(new QueryWrapper<User>().eq("id", 1));
 		entity.setDetailList(Lists.newArrayList(Detail.builder().id(32L).build()));
 
-		Class[] objects = new Class[]{User.class, List.class};
+		Class[] objects = new Class[]{User.class, User.class, List.class};
 		byte[] se = SerializeUtil.serialize(objects);
 		Class[] clzs = (Class[]) SerializeUtil.deSerialize(se);
 
-		Object[] args = new Object[]{ entity, Lists.newArrayList("a", "b")};
+		Object[] args = new Object[]{ entity, null, Lists.newArrayList(User.builder().name("test").build())};
 //		byte[] argsb = SerializeUtil.serialize(args);
 //		Object[] args2 = (Object[]) SerializeUtil.deSerialize(argsb);
 //		System.out.println(args2);
@@ -65,7 +65,7 @@ public class SimpleTest {
 			args2[i] = JSONObject.parseObject(JSONObject.toJSONString(argss.get(i)), objects[i]);
 		}
 
-		Object o2 = SpringBeanContextUtil.get("userService");
+		Object o2 = springContextService.get("userService");
 		Class clazz2 = o2.getClass();
 		Method m2 = clazz2.getDeclaredMethod("test", clzs);
 
@@ -73,14 +73,11 @@ public class SimpleTest {
 		System.out.println(result2);
 
 
-//		List<HeadquartersDistribution> beanList = headquartersDistributionServiceImpl.list();
-
 		System.out.println(JSONObject.toJSONString(evn.getActiveProfiles()));
 		System.out.println(JSONObject.toJSONString(evn.getDefaultProfiles()));
 		System.out.println(evn.getProperty("dmall.dmc.projectCode"));
 		System.out.println(evn.getProperty("amp.serverAddress"));
 		Assert.assertEquals(true, 1 == 1);
-//		beanList.forEach(System.out::println);
 
 	}
 }

@@ -20,10 +20,10 @@ public class UserService {
 	@Resource
 	UserMapper userMapper;
 
-	public void test(User e, List<String> strings){
+	public void test(User e, User u, List<User> list){
 		e.getDetailList().forEach(System.out::println);
-
-		strings.forEach(System.out::println);
+		System.out.println(u);
+		list.forEach(System.out::println);
 	}
 
 }
