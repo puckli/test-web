@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.aop.ExceptionPointCut;
+import web.aop.LocalRetry;
 import web.base.BaseC;
 import web.dao.mapper.UserMapper;
 import web.domain.HttpResult;
@@ -27,10 +28,12 @@ public class TestC extends BaseC
 	private HttpResult result = HttpResult.fail("操作异常");
 	@Autowired
 	UserMapper userMapper;
-	
+	public final static Class[] argsType = new Class[]{Model.class};
+
 	@RequestMapping
 	@ResponseBody
-	@ExceptionPointCut
+//	@ExceptionPointCut
+	@LocalRetry(beanName = "testC", methodName = "test", argsType = {"org.springframework.ui.Model", "java.lang.String", "java.lang.String"})
 	public HttpResult test(Model view, String exDesc, String name){
 		exDesc = "测试异常！";
 		logger.info("test()in..");

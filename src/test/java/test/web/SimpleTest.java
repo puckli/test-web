@@ -51,7 +51,7 @@ public class SimpleTest {
 		User entity = userMapper.selectOne(new QueryWrapper<User>().eq("id", 1));
 		entity.setDetailList(Lists.newArrayList(Detail.builder().id(32L).build()));
 
-		Class[] objects = new Class[]{User.class, User.class, List.class};
+		Class[] objects = new Class[]{Class.forName("web.domain.User"), User.class, List.class};
 		byte[] se = SerializeUtil.serialize(objects);
 		Class[] clzs = (Class[]) SerializeUtil.deSerialize(se);
 

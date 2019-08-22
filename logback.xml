@@ -5,6 +5,7 @@
 		value="[%p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t][%c]%C:%L - %m %n" />
 	<!-- 文件历史数 -->
 	<property name="maxHistory" value="7" />
+	<property name="logPath" value="${log.path}" />
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>${outPattern}</pattern>
@@ -13,9 +14,9 @@
 
 	
 	<appender name="LOG_test_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${dynamic.log.path}/test.log</file>
+		<file>${logPath}/test.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${dynamic.log.path}/test%d{yyyy-MM-dd}.log.gz
+			<fileNamePattern>${logPath}/test%d{yyyy-MM-dd}.log.gz
 			</fileNamePattern>
 			<maxHistory>${maxHistory}</maxHistory>
 		</rollingPolicy>
