@@ -26,6 +26,6 @@ public @interface LocalRetry {
 	/** 间隔时间 */
 	int intervals() default  5;
 
-	/** 此方法参数类型数组，如new Class[]{String.class, Map.class} */
+	/** 此方法参数类型数组，如new Class[]{"org.springframework.ui.Model", "java.lang.String"} */
 	String[] argsType() ;
 }
