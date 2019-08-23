@@ -81,15 +81,20 @@ public class MyExceptionHandler {
 		} catch (Throwable e) {
 			log.error("LocalRetryHanlder error, e=" + e);
 
+			if(localRetry.retryClazz().equals(Throwable.class))
+			{
+				System.out.println("1");
+			}
+
 			Object[] args = joinPoint.getArgs();
-			String[] typeS = localRetry.argsType();
+			String[] typeS = localRetry.argsClassName();
 			Class[] classes = new Class[typeS.length];
 			for (int i = 0; i < typeS.length; i++) {
 				classes[i] = Class.forName(typeS[i]);
 			}
 			DelayThreadPool.execute(
-					new CallProtectRunnable(localRetry.beanName(), localRetry.methodName(), classes, args,
-							localRetry.intervals(), 0, localRetry.maxRetry()));
+					new CallProtectRunnable(localRetry.beanName(), sig.getName(), classes, args,
+							localRetry.gapSec(), 0, localRetry.maxRetry()));
 			log.error("LocalRetryHanlder in DelayThreadPool");
 			throw e;
 		}

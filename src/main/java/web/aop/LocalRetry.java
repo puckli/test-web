@@ -17,15 +17,17 @@ public @interface LocalRetry {
 	/** 当前bean name,Spring容器中可以通过此name获取到bean对象 */
 	String beanName();
 
-	/** 此方法名称 */
-	String methodName();
-
 	/** 最大重试次数 */
 	int maxRetry() default 3;
 
 	/** 间隔时间 */
-	int intervals() default  5;
+	int gapSec() default  5;
+
+	Class retryClazz() default Throwable.class;
+
+	/** 是否将异常捕获，true时捕获异常，返回null */
+	boolean catched() default false;
 
 	/** 此方法参数类型数组，如new Class[]{"org.springframework.ui.Model", "java.lang.String"} */
-	String[] argsType() ;
+	String[] argsClassName() ;
 }

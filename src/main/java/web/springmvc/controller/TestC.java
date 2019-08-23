@@ -2,7 +2,6 @@ package web.springmvc.controller;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +31,8 @@ public class TestC extends BaseC
 
 	@RequestMapping
 	@ResponseBody
-//	@ExceptionPointCut
-	@LocalRetry(beanName = "testC", methodName = "test", argsType = {"org.springframework.ui.Model", "java.lang.String", "java.lang.String"})
+	@ExceptionPointCut
+	@LocalRetry(beanName = "testC", argsClassName = {"org.springframework.ui.Model", "java.lang.String", "java.lang.String"})
 	public HttpResult test(Model view, String exDesc, String name){
 		exDesc = "测试异常！";
 		logger.info("test()in..");

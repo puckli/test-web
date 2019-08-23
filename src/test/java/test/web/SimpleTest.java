@@ -17,7 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.mapper.UserMapper;
 import web.domain.Detail;
 import web.domain.User;
+import web.springmvc.service.DownloadService;
 import web.springmvc.service.SpringContextService;
+import web.springmvc.service.UserService;
 import web.util.SerializeUtil;
 import web.util.SpringBeanContextUtil;
 
@@ -39,6 +41,8 @@ public class SimpleTest {
 
 	@Resource
 	UserMapper userMapper;
+	@Resource
+	UserService userService;
 	@Resource
 	SpringContextService springContextService;
 	@Autowired
@@ -64,6 +68,8 @@ public class SimpleTest {
 		for (int i = 0; i < objects.length; i++) {
 			args2[i] = JSONObject.parseObject(JSONObject.toJSONString(argss.get(i)), objects[i]);
 		}
+
+		Object testo2 = springContextService.get(DownloadService.class);
 
 		Object o2 = springContextService.get("userService");
 		Class clazz2 = o2.getClass();

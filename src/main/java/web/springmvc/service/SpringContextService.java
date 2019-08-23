@@ -16,4 +16,9 @@ public class SpringContextService extends ApplicationObjectSupport {
 		return (T) getApplicationContext().getBean(beanName);
 	}
 
+	public <T> T get(Class beanClass)
+	{
+		return (T) getApplicationContext().getBean(beanClass);
+	}
+
 }
