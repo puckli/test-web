@@ -31,12 +31,12 @@ public class MyExceptionHandler {
 	@Pointcut("@annotation(ExceptionPointCut)")
 	public void myPointCut(){}
 
-	@AfterThrowing(value = "execution(* web..*(..))", throwing = "a")
-	public Object handleException(Throwable a){
-		System.out.println("Aspect in handException");
-
-		return JSONObject.toJSONString(HttpResult.fail());
-	}
+//	@AfterThrowing(value = "execution(* web..*(..))", throwing = "a")
+//	public Object handleException(Throwable a){
+//		System.out.println("Aspect in handException");
+//
+//		return JSONObject.toJSONString(HttpResult.fail());
+//	}
 
 	/**
 	 * 与@ResponseBody共同使用时，返回自定义对象可能报错，需要对应jackson版本才行
@@ -46,7 +46,8 @@ public class MyExceptionHandler {
 	@Around("myPointCut()&&@annotation(exceptionPointCut)")
 	public Object aroundCut(ProceedingJoinPoint joinPoint, ExceptionPointCut exceptionPointCut){
 		Signature sig = joinPoint.getSignature();
-		log.info("{},method={},param={},getDeclaringTypeName={}", sig.getDeclaringType(), sig.getName(), joinPoint.getArgs(), sig.getDeclaringTypeName());
+		log.info("getDeclaringType={},method={},param={},getDeclaringTypeName={}",
+				sig.getDeclaringType(), sig.getName(), joinPoint.getArgs(), sig.getDeclaringTypeName());
 		Object obj = null;
 		try {
 			obj = joinPoint.proceed();
@@ -61,43 +62,4 @@ public class MyExceptionHandler {
 		return obj;
 	}
 
-	/**
-	 * 切点
-	 */
-	@Pointcut("@annotation(LocalRetry)")
-	public void localRetryPointCut(){}
-
-	/**
-	 * 与@ResponseBody共同使用时，返回自定义对象可能报错，需要对应jackson版本才行
-	 * @param joinPoint
-	 * @return
-	 */
-	@Around("localRetryPointCut()&&@annotation(localRetry)")
-	public Object aroundCut(ProceedingJoinPoint joinPoint, LocalRetry localRetry) throws Throwable{
-		Signature sig = joinPoint.getSignature();
-		Object obj = null;
-		try {
-			obj = joinPoint.proceed();
-		} catch (Throwable e) {
-			log.error("LocalRetryHanlder error, e=" + e);
-
-			if(localRetry.retryClazz().equals(Throwable.class))
-			{
-				System.out.println("1");
-			}
-
-			Object[] args = joinPoint.getArgs();
-			String[] typeS = localRetry.argsClassName();
-			Class[] classes = new Class[typeS.length];
-			for (int i = 0; i < typeS.length; i++) {
-				classes[i] = Class.forName(typeS[i]);
-			}
-			DelayThreadPool.execute(
-					new CallProtectRunnable(localRetry.beanName(), sig.getName(), classes, args,
-							localRetry.gapSec(), 0, localRetry.maxRetry()));
-			log.error("LocalRetryHanlder in DelayThreadPool");
-			throw e;
-		}
-		return obj;
-	}
 }

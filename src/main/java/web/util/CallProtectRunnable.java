@@ -56,8 +56,14 @@ public class CallProtectRunnable implements Runnable, Delayed{
 	public void run() {
 		Object result = null;
 		try{
+			CallProtectThreadLocal.set();
 			log.info("CallProtectRunnable in. beanName={},methodName={},maxRetry={},cnt={},pool activating thread={}",  beanName, methodName, maxRetry, cnt, DelayThreadPool.pool.getActiveCount());
-			Object bean = SpringBeanContextUtil.get(beanName);
+			Object bean = null;
+			if(beanName.indexOf(".") != -1){
+				bean = SpringBeanContextUtil.get(Class.forName(beanName));
+			} else {
+				bean = SpringBeanContextUtil.get(beanName);
+			}
 			if(bean != null){
 				Class clazz2 = bean.getClass();
 				Method method = clazz2.getDeclaredMethod(methodName, clzs);
@@ -69,15 +75,16 @@ public class CallProtectRunnable implements Runnable, Delayed{
 			}
 
 		} catch (Exception e){
-			log.error("CallProtectRunnable redo fail, beanName={},methodName={},param={},cnt={}, e={}", beanName, methodName, args, cnt, e);
+			log.error("CallProtectRunnable redo fail, beanName={},methodName={},param={},cnt={}", beanName, methodName, args, cnt);
 			try {
-				if(cnt <= maxRetry){
+				if(cnt < maxRetry){
 					this.time = TimeUnit.MILLISECONDS.convert(timeSec, TimeUnit.SECONDS) + System.currentTimeMillis();
 					++this.cnt;
 					DelayThreadPool.pool.execute(this);
 				} else {
+					CallProtectThreadLocal.remove();
 					//TODO Monitor
-					log.error("CallProtectRunnable error. beanName={},methodName={},queue size={}, e={}", beanName, methodName, DelayThreadPool.queue.size(), e);
+					log.error("CallProtectRunnable error end. beanName={},methodName={},queue size={}", beanName, methodName, DelayThreadPool.queue.size());
 				}
 			} catch (Exception e1){
 				e1.printStackTrace();

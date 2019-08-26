@@ -15,13 +15,13 @@ import java.lang.annotation.Target;
 public @interface LocalRetry {
 
 	/** 当前bean name,Spring容器中可以通过此name获取到bean对象 */
-	String beanName();
+	String beanName() default "_n";
 
 	/** 最大重试次数 */
 	int maxRetry() default 3;
 
 	/** 间隔时间 */
-	int gapSec() default  5;
+	int gapSec() default  10;
 
 	Class retryClazz() default Throwable.class;
 
