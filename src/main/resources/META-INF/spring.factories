@@ -1,0 +1,5 @@
+# Spring 自动装配 装配bean或配置类时候，我们不在需要使用@EnableXXX来导入功能，而是通过自动注入方式。
+# 第一步、编写需要自动装载的配置类。
+# 第二步、在resources目录下新建META-INF文件夹，编写spring.factories。指定配置类
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xxx.sdk.ProtectConfig
