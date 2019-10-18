@@ -45,8 +45,8 @@ public class SerializeUtil {
 	}
 
 	public static void main(String[] args){
-		User user = User.builder().name("aa").build();
-		byte[] by = serialize(user);
+//		User user = User.builder().name("aa").build();
+//		byte[] by = serialize(user);
 		System.out.println();
 	}
 }

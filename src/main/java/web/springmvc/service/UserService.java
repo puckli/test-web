@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import web.aop.LocalRetry;
 import web.dao.mapper.UserMapper;
 import web.domain.User;
+import web.domain.enums.StatusEnum;
 import web.util.BusinessException;
 
 import javax.annotation.Resource;
@@ -32,6 +33,10 @@ public class UserService {
 			throw new BusinessException("exxx test:" + ex.getMessage());
 		}
 		return e;
+	}
+
+	public void test2(StatusEnum statusEnum){
+		System.out.println(1111);
 	}
 
 }

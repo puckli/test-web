@@ -1,10 +1,7 @@
 package web.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -13,10 +10,8 @@ import java.util.List;
  * @Description
  * @Date: 11:26 2019-03-07
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class User extends BaseDomain {
 
 	private Long id;
