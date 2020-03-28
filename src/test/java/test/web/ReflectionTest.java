@@ -31,7 +31,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"/spring-config.xml"})
 @Transactional
-public class SimpleTest {
+public class ReflectionTest {
 
 	@Resource
 	UserMapper userMapper;
