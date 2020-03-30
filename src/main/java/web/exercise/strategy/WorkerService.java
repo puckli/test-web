@@ -19,7 +19,7 @@ public class WorkerService {
      * key：beanName
      */
     @Resource
-    private Map<String, AbstractClass> stgMap = new HashMap<>();
+    private Map<String, AbstractClass> stgMap;
 
     /**
      * 流程执行
